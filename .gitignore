@@ -1,0 +1,5 @@
+*.json
+*.env
+*.pyc
+*.log
+*.DS_Store

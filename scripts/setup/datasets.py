@@ -9,16 +9,6 @@ from azureml.data.dataset_factory import DataType
 import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
-def data_filepaths(data_folder=None):
-    """Get full paths to discrete data files"""
-    full_filepaths = []
-    absolute_path = Path(data_folder).absolute()
-    data_files = os.listdir(data_folder)
-    for file in data_files:
-        file_with_path = str(absolute_path) + '/' + str(file)
-        full_filepaths.append(file_with_path)
-    return full_filepaths
-
 def register_dataset(dataset=None, workspace=None, name=None, desc=None,tags=None):
     """Register datasets"""
     try:
@@ -30,19 +20,16 @@ def register_dataset(dataset=None, workspace=None, name=None, desc=None,tags=Non
 def main():
     """Main operational flow"""
     # Set target locations and specific filename
-    local_data_folder = '/input-data/'
     target_def_blob_store_path = '/blob-input-data/'
     input_filename = 'HPI_master.csv'
-
-    # Get input data files from local
-    data_file_paths = data_filepaths(data_folder = local_data_folder)
 
     # Get the default blob store
     def_blob_store = ws.get_default_datastore()
 
     # Upload files to blob store
     def_blob_store.upload_files(
-            files=data_file_paths, 
+            #files=data_file_paths, 
+            files=['./input-data/HPI_master.csv'],#data_file_paths, 
             target_path=target_def_blob_store_path,
             overwrite=True,
             show_progress=True

@@ -3,3 +3,4 @@
 - Sample dataset taken from [Federal Housing Finance Agency datasets](https://www.fhfa.gov/DataTools/Downloads/Pages/House-Price-Index-Datasets.aspx#mpo)
 pip install python-dotenv
 pip install azureml-core
+pip install azureml-dataset-runtime

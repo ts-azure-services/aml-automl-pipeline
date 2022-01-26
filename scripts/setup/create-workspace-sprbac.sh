@@ -5,7 +5,7 @@ end=$'\e[0m'
 
 # Start of script
 SECONDS=0
-printf "${grn}STARTING CREATION OF WORKSPACE, LOADING OF DATASETS, AND CREATION OF CLUSTERS...${end}\n"
+printf "${grn}STARTING CREATION OF AML WORKSPACE RESOURCES...${end}\n"
 
 # Source subscription ID, and prep config file
 source sub.env
@@ -15,7 +15,7 @@ sub_id=$SUB_ID
 az account set -s $sub_id
 
 # Source unique name for RG, workspace creation
-random_name_generator='/name-generator/random_name.py'
+random_name_generator='/scripts/setup/name-generator/random_name.py'
 unique_name=$(python $PWD$random_name_generator)
 number=$[ ( $RANDOM % 10000 ) + 1 ]
 resourcegroup=$unique_name$number
@@ -56,12 +56,6 @@ clientID=$(cat $credFile | jq '.clientId')
 clientSecret=$(cat $credFile | jq '.clientSecret')
 tenantID=$(cat $credFile | jq '.tenantId')
 rm $credFile
-
-## Create infra file in specific format
-#printf "${grn}WRITING OUT INFRA ENV VARIABLES...${end}\n"
-#infraFile='infra.env'
-#printf "RG=$resourcegroup\n" > $infraFile
-#printf "LOCATION=$location\n" >> $infraFile
 
 # Create variables file
 printf "${grn}WRITING OUT SERVICE PRINCIPAL VARIABLES...${end}\n"

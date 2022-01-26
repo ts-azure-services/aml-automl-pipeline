@@ -1,37 +1,5 @@
 # Intent
 - A repo to demonstrate the ways to combine data prep, AutoML and ML pipelines in Azure Machine Learning
 - Sample dataset taken from [Federal Housing Finance Agency datasets](https://www.fhfa.gov/DataTools/Downloads/Pages/House-Price-Index-Datasets.aspx#mpo)
-
-# File Structure
-- LICENSE.TXT
-- README.md
-- requirements.txt
-- input-data
-	- HPI_master.csv ```input data```
-- scripts
-	- "Setup scripts"
-		- workflow.sh ```shell script to initiate complete end-to-end workflow```
-		- create-workspace-sprbac.sh ```shell script embedded in 'workflow.sh' to create workspace/infra```
-		- clusters.py ```creates a cluster; part of 'workflow.sh' process```
-		- datasets.py ```uploads the raw data into blobstore; part of 'workflow.sh' process```
-	- "Main scripts"
-		- automl_pipeline.py ```python script that initiates the Azure ML pipeline```
-		- automl_pipeline_old.py ```older script that broke the pipeline into 2 steps, hence 2 runs```
-		- breakup.py ```first data transformation on input data```
-		- cleanse.py ```second data transformation on input data```
-		- register_dataset.py ```script to register the cleansed dataset```
-		- register_dataset_old.py ```script to register cleansed dataset, based on old pipeline run```
-		- register_model.py ```script to register the model```
-		- metric_view.py ```script to assess metric results from individual runs```
-		- offline_download_metrics.py ```script to download the metrics and model offline```
-		- model_inference.py ```WIP; leverages the offline download to load the model for inferencing```
-	- "Authentication & Environment variables"
-		- authentication.py ```Used to authenticate the workspace with a service principal```
-		- sub.env ```subscription info: needs to be in place prior to execution```
-			- Manually create a file called ```sub.env``` with one line: ```SUB_ID="<enter subscription id>"```
-		- variables.env ```gets created during workflow```
-		- config.json ```gets created during workflow```
-	- "Random name generator"
-		- adjectives.txt ```used as input into random_name.py```
-		- nouns.txt ```used as input into random_name.py```
-		- random_name.py ```uses adjectives.txt. and nouns.txt to create a random name```
+pip install python-dotenv
+pip install azureml-core

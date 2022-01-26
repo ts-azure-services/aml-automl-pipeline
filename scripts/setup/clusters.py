@@ -1,6 +1,11 @@
-from authentication import ws
+import logging
+import sys
+import os.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '../..')))
+from scripts.authentication.service_principal import ws
 from azureml.core.compute import ComputeTarget, AmlCompute
 from azureml.core.compute_target import ComputeTargetException
+logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
 def create_compute_cluster(workspace=None, compute_name=None):
     """Create AML compute cluster to"""
@@ -10,7 +15,7 @@ def create_compute_cluster(workspace=None, compute_name=None):
     except ComputeTargetException:
         # To use a different region for the compute, add a location='<region>' parameter
         compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2_V2',
-                min_nodes=0,
+                min_nodes=1,
                 max_nodes=5)
         cpu_cluster = ComputeTarget.create(workspace, compute_name, compute_config)
         print(f'Triggered the creation of {compute_name} cluster')
@@ -18,7 +23,7 @@ def create_compute_cluster(workspace=None, compute_name=None):
 
 def main():
     """Main operational flow"""
-    cluster_name='newcluster1'
+    cluster_name='cpu-cluster'
     create_compute_cluster(
             workspace=ws, 
             compute_name=cluster_name

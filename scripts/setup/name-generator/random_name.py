@@ -7,7 +7,7 @@ def load_in_files(source=None):
     return lines
 
 if __name__ == "__main__":
-    adjectives = load_in_files('./name-generator/adjectives.txt')
-    nouns = load_in_files('./name-generator/nouns.txt')
+    adjectives = load_in_files('scripts/setup/name-generator/adjectives.txt')
+    nouns = load_in_files('scripts/setup/name-generator/nouns.txt')
     random_name = str( random.choice(adjectives) ) + str( random.choice(nouns).title() )
     print(random_name)

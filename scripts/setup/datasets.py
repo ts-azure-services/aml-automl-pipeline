@@ -1,8 +1,13 @@
 import os
+import sys
+import os.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '../..')))
+from scripts.authentication.service_principal import ws
 from pathlib import Path
-from authentication import ws
 from azureml.core import Dataset
 from azureml.data.dataset_factory import DataType
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
 def data_filepaths(data_folder=None):
     """Get full paths to discrete data files"""
@@ -25,7 +30,7 @@ def register_dataset(dataset=None, workspace=None, name=None, desc=None,tags=Non
 def main():
     """Main operational flow"""
     # Set target locations and specific filename
-    local_data_folder = './../input-data'
+    local_data_folder = '/input-data/'
     target_def_blob_store_path = '/blob-input-data/'
     input_filename = 'HPI_master.csv'
 

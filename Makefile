@@ -3,9 +3,9 @@ install:
 		pip install -r requirements.txt
 
 setup_run:
-	./scripts/setup/create-aml-resources.sh
-	python ./scripts/setup/clusters.py
-	python ./scripts/setup/upload_baseline_data.py
+	./scripts/setup/create-workspace-sprbac.sh
+	#python ./scripts/setup/clusters.py
+	#python ./scripts/setup/upload_baseline_data.py
 
 lint:
 	pylint --disable=R,C,W1203,W0702,E0110,W0703 ./modeling/retrain/create_retrain_dataset.py
